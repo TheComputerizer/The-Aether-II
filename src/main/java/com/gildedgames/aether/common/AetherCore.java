@@ -3,8 +3,10 @@ package com.gildedgames.aether.common;
 import com.gildedgames.aether.api.AetherAPI;
 import com.gildedgames.aether.common.analytics.GAReporter;
 import com.gildedgames.aether.common.util.JarValidator;
+import com.gildedgames.orbis.lib.CapabilityManagerOrbisLib;
 import net.minecraft.launchwrapper.Launch;
 import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventHandler;
@@ -90,8 +92,8 @@ public class AetherCore
 	}
 
 	@EventHandler
-	public void onModInit(final FMLInitializationEvent event)
-	{
+	public void onModInit(final FMLInitializationEvent event) {
+		MinecraftForge.EVENT_BUS.register(CapabilityManagerOrbisLib.class);
 		AetherCore.PROXY.init(event);
 	}
 

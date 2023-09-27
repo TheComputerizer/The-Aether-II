@@ -1,5 +1,6 @@
 package com.gildedgames.aether.client.events.listeners.gui;
 
+import com.gildedgames.aether.common.AetherCore;
 import com.gildedgames.aether.common.init.DimensionsAether;
 import com.gildedgames.aether.common.network.NetworkingAether;
 import com.gildedgames.aether.common.network.packets.PacketSetShouldRespawnAtCampfire;
@@ -12,7 +13,7 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.relauncher.Side;
 
-@Mod.EventBusSubscriber(Side.CLIENT)
+@Mod.EventBusSubscriber(modid = AetherCore.MOD_ID, value = Side.CLIENT)
 public class GuiRespawnListener
 {
 	@SubscribeEvent

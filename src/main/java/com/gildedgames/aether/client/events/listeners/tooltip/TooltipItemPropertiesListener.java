@@ -10,6 +10,7 @@ import com.gildedgames.aether.api.items.equipment.effects.IEffectProvider;
 import com.gildedgames.aether.api.items.properties.IItemProperties;
 import com.gildedgames.aether.api.items.properties.ItemRarity;
 import com.gildedgames.aether.client.gui.util.ToolTipCurrencyHelper;
+import com.gildedgames.aether.common.AetherCore;
 import com.gildedgames.aether.common.entities.effects.IEffectDamageHolder;
 import com.gildedgames.aether.common.entities.effects.IEffectResistanceHolder;
 import com.gildedgames.aether.common.entities.effects.StatusEffect;
@@ -29,7 +30,7 @@ import net.minecraftforge.fml.relauncher.Side;
 
 import java.util.*;
 
-@Mod.EventBusSubscriber(Side.CLIENT)
+@Mod.EventBusSubscriber(modid = AetherCore.MOD_ID, value = Side.CLIENT)
 public class TooltipItemPropertiesListener
 {
 	private static final ToolTipCurrencyHelper toolTipHelper = new ToolTipCurrencyHelper();

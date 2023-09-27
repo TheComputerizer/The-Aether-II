@@ -5,6 +5,7 @@ import com.gildedgames.aether.api.registry.tab.ITabClient;
 import com.gildedgames.aether.api.registry.tab.ITabGroup;
 import com.gildedgames.aether.api.registry.tab.ITabGroupHandler;
 import com.gildedgames.aether.client.gui.tab.RenderTabGroup;
+import com.gildedgames.aether.common.AetherCore;
 import com.gildedgames.aether.common.network.NetworkingAether;
 import com.gildedgames.aether.common.network.packets.PacketOpenTab;
 import net.minecraft.client.Minecraft;
@@ -19,7 +20,7 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import org.lwjgl.input.Mouse;
 
-@Mod.EventBusSubscriber(Side.CLIENT)
+@Mod.EventBusSubscriber(modid = AetherCore.MOD_ID, value = Side.CLIENT)
 public class GuiTabListener
 {
 	@SideOnly(Side.CLIENT)

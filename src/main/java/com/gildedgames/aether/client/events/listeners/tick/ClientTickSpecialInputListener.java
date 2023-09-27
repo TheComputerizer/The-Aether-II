@@ -1,6 +1,7 @@
 package com.gildedgames.aether.client.events.listeners.tick;
 
 import com.gildedgames.aether.api.registrar.SoundsAether;
+import com.gildedgames.aether.common.AetherCore;
 import com.gildedgames.aether.common.capabilities.entity.player.PlayerAether;
 import com.gildedgames.aether.common.capabilities.entity.player.modules.PlayerAbilitiesModule;
 import com.gildedgames.aether.common.network.NetworkingAether;
@@ -15,7 +16,7 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent;
 import net.minecraftforge.fml.relauncher.Side;
 
-@Mod.EventBusSubscriber(Side.CLIENT)
+@Mod.EventBusSubscriber(modid = AetherCore.MOD_ID, value = Side.CLIENT)
 public class ClientTickSpecialInputListener
 {
 	private static boolean PREV_JUMP_BIND_STATE;

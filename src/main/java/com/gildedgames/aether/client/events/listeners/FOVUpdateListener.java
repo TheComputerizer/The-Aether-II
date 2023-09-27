@@ -1,6 +1,7 @@
 package com.gildedgames.aether.client.events.listeners;
 
 import com.gildedgames.aether.api.registrar.ItemsAether;
+import com.gildedgames.aether.common.AetherCore;
 import com.gildedgames.aether.common.capabilities.entity.player.PlayerAether;
 import com.gildedgames.aether.common.capabilities.entity.player.modules.PlayerEquipmentModule;
 import com.gildedgames.aether.common.items.armor.ItemAetherGloves;
@@ -17,7 +18,7 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.relauncher.Side;
 
-@Mod.EventBusSubscriber(Side.CLIENT)
+@Mod.EventBusSubscriber(modid = AetherCore.MOD_ID, value = Side.CLIENT)
 public class FOVUpdateListener
 {
     @SubscribeEvent

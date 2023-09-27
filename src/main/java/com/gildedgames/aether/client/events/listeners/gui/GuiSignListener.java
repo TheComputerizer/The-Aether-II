@@ -1,6 +1,7 @@
 package com.gildedgames.aether.client.events.listeners.gui;
 
 import com.gildedgames.aether.client.gui.misc.GuiSkyrootSign;
+import com.gildedgames.aether.common.AetherCore;
 import com.gildedgames.aether.common.entities.tiles.TileEntitySkyrootSign;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.gui.inventory.GuiEditSign;
@@ -9,7 +10,7 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.relauncher.Side;
 
-@Mod.EventBusSubscriber(Side.CLIENT)
+@Mod.EventBusSubscriber(modid = AetherCore.MOD_ID, value = Side.CLIENT)
 public class GuiSignListener
 {
 	@SubscribeEvent

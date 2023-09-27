@@ -1,5 +1,6 @@
 package com.gildedgames.aether.client.events.listeners.sound;
 
+import com.gildedgames.aether.common.AetherCore;
 import com.gildedgames.aether.common.items.IUsesCustomSound;
 import net.minecraft.client.Minecraft;
 import net.minecraft.item.ItemStack;
@@ -9,7 +10,7 @@ import net.minecraftforge.fml.common.eventhandler.EventPriority;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.relauncher.Side;
 
-@Mod.EventBusSubscriber(Side.CLIENT)
+@Mod.EventBusSubscriber(modid = AetherCore.MOD_ID, value = Side.CLIENT)
 public class ItemUseSoundListener
 {
     @SubscribeEvent(priority = EventPriority.LOWEST)

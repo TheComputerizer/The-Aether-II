@@ -3,6 +3,7 @@ package com.gildedgames.aether.client.events.listeners.gui;
 import com.gildedgames.aether.client.gui.misc.CustomLoadingRenderer;
 import com.gildedgames.aether.client.gui.misc.GuiAetherLoading;
 import com.gildedgames.aether.client.gui.misc.GuiBlackScreen;
+import com.gildedgames.aether.common.AetherCore;
 import com.gildedgames.aether.common.init.DimensionsAether;
 import com.gildedgames.orbis.lib.client.PartialTicks;
 import com.gildedgames.orbis.lib.client.gui.util.GuiFrameUtils;
@@ -21,7 +22,7 @@ import net.minecraftforge.fml.common.gameevent.TickEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent.ClientTickEvent;
 import net.minecraftforge.fml.relauncher.Side;
 
-@Mod.EventBusSubscriber(Side.CLIENT)
+@Mod.EventBusSubscriber(modid = AetherCore.MOD_ID, value = Side.CLIENT)
 public class GuiLoadingListener
 {
 	private static final Minecraft mc = Minecraft.getMinecraft();

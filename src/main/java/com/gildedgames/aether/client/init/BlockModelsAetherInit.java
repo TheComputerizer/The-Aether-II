@@ -1,6 +1,7 @@
 package com.gildedgames.aether.client.init;
 
 import com.gildedgames.aether.api.registrar.BlocksAether;
+import com.gildedgames.aether.common.AetherCore;
 import com.gildedgames.aether.common.blocks.construction.signs.BlockStandingSkyrootSign;
 import com.gildedgames.aether.common.blocks.construction.signs.BlockWallSkyrootSign;
 import com.gildedgames.aether.common.blocks.construction.walls.BlockSkyrootWall;
@@ -35,7 +36,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import java.util.LinkedHashMap;
 
 @SideOnly(Side.CLIENT)
-@Mod.EventBusSubscriber(Side.CLIENT)
+@Mod.EventBusSubscriber(modid = AetherCore.MOD_ID, value = Side.CLIENT)
 public class BlockModelsAetherInit
 {
 	@SubscribeEvent()

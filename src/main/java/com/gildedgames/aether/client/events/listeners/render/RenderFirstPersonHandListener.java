@@ -1,6 +1,7 @@
 package com.gildedgames.aether.client.events.listeners.render;
 
 import com.gildedgames.aether.client.renderer.entities.living.RenderPlayerHelper;
+import com.gildedgames.aether.common.AetherCore;
 import com.gildedgames.aether.common.capabilities.entity.player.PlayerAether;
 import com.gildedgames.aether.common.items.weapons.crossbow.ItemCrossbow;
 import net.minecraft.client.Minecraft;
@@ -11,7 +12,7 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.relauncher.Side;
 
-@Mod.EventBusSubscriber(Side.CLIENT)
+@Mod.EventBusSubscriber(modid = AetherCore.MOD_ID, value = Side.CLIENT)
 public class RenderFirstPersonHandListener
 {
 	@SubscribeEvent

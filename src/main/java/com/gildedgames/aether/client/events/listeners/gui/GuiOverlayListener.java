@@ -5,6 +5,7 @@ import com.gildedgames.aether.client.gui.overlays.PortalOverlay;
 import com.gildedgames.aether.client.gui.overlays.SwetOverlay;
 import com.gildedgames.aether.client.models.entities.player.*;
 import com.gildedgames.aether.client.renderer.particles.ParticleRainProxyFactory;
+import com.gildedgames.aether.common.AetherCore;
 import com.google.common.collect.Lists;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.entity.RenderLivingBase;
@@ -17,7 +18,7 @@ import net.minecraftforge.fml.relauncher.Side;
 import java.util.HashSet;
 import java.util.List;
 
-@Mod.EventBusSubscriber(Side.CLIENT)
+@Mod.EventBusSubscriber(modid = AetherCore.MOD_ID, value = Side.CLIENT)
 public class GuiOverlayListener
 {
 	private static final List<IOverlay> overlays = Lists.newArrayList();

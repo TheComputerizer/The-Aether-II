@@ -1,6 +1,7 @@
 package com.gildedgames.aether.client.events.listeners.render;
 
 import com.gildedgames.aether.client.renderer.world.RenderWorldPrecipitation;
+import com.gildedgames.aether.common.AetherCore;
 import net.minecraft.client.Minecraft;
 import net.minecraft.world.World;
 import net.minecraftforge.client.IRenderHandler;
@@ -9,7 +10,7 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent;
 import net.minecraftforge.fml.relauncher.Side;
 
-@Mod.EventBusSubscriber(Side.CLIENT)
+@Mod.EventBusSubscriber(modid = AetherCore.MOD_ID, value = Side.CLIENT)
 public class RenderWorldPrecipitationListener
 {
 	@SubscribeEvent

@@ -35,7 +35,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import java.util.Map;
 
 @SideOnly(Side.CLIENT)
-@Mod.EventBusSubscriber(Side.CLIENT)
+@Mod.EventBusSubscriber(modid = AetherCore.MOD_ID, value = Side.CLIENT)
 public class ItemModelsAetherInit
 {
 	@SubscribeEvent()

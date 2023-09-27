@@ -1,5 +1,6 @@
 package com.gildedgames.aether.client.events.listeners;
 
+import com.gildedgames.aether.common.AetherCore;
 import com.gildedgames.aether.common.containers.slots.*;
 import com.gildedgames.aether.common.containers.slots.icestone_cooler.SlotCoolingItem;
 import com.gildedgames.aether.common.containers.slots.incubator.SlotMoaEgg;
@@ -8,7 +9,7 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.relauncher.Side;
 
-@Mod.EventBusSubscriber(Side.CLIENT)
+@Mod.EventBusSubscriber(modid = AetherCore.MOD_ID, value = Side.CLIENT)
 public class TextureStitchListener
 {
 	@SubscribeEvent
