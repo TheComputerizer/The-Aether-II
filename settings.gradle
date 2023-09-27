@@ -1,4 +1,14 @@
-rootProject.name = 'aether-ii'
-
-include 'orbis-lib'
-project(':orbis-lib').projectDir = file("lib/orbis-lib")
+pluginManagement {
+    repositories {
+        gradlePluginPortal()
+        maven {
+            name 'Garden of Fancy'
+            url 'https://maven.gofancy.wtf/releases'
+        }
+        maven {
+            name 'MinecraftForge'
+            url 'https://maven.minecraftforge.net/'
+        }
+    }
+}
+rootProject.name = base_name

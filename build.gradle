@@ -1,143 +1,124 @@
-buildscript {
-    repositories {
-        jcenter()
-        maven {
-            name = "forge"
-            url = "http://files.minecraftforge.net/maven"
-        }
-    }
-    dependencies {
-        classpath 'net.minecraftforge.gradle:ForgeGradle:2.3-SNAPSHOT'
+plugins {
+    id 'com.github.johnrengelman.shadow' version '8.1.+'
+    id 'net.minecraftforge.gradle' version '6.0.+'
+    id 'wtf.gofancy.fancygradle' version '1.1.+'
+}
+
+fancyGradle {
+    patches {
+        resources
+        coremods
+        asm
+        mergetool
     }
 }
 
-apply plugin: 'net.minecraftforge.gradle.forge'
-apply plugin: 'maven-publish'
+version = "${project.minecraft_version}-${project.mod_version}"
+group = maven_group
+archivesBaseName = base_name
+
+java.toolchain.getLanguageVersion().set(JavaLanguageVersion.of(8))
+
 
 repositories {
-    mavenCentral()
+    maven {
+        name = 'CurseForge'
+        url = uri('https://www.cursemaven.com')
+        content {
+            includeGroup 'curse.maven'
+        }
+    }
+    flatDir {
+        dirs 'build/libs'
+    }
+}
 
-    maven { url = 'https://repo.spongepowered.org/maven' }
+minecraft {
+    mappings channel: 'stable', version: forge_mappings
+    accessTransformer = file("src/main/resources/META-INF/${at_file}.cfg")
+    runs {
+        client {
+            workingDirectory file('run')
+            property 'forge.logging.markers', 'SCAN,REGISTRIES,REGISTRYDUMP'
+            property 'forge.logging.console.level', 'debug'
+        }
+
+        server {
+            property 'forge.logging.markers', 'SCAN,REGISTRIES,REGISTRYDUMP'
+            property 'forge.logging.console.level', 'debug'
+        }
+    }
 }
 
 configurations {
-    shaded
-    shaded.exclude group: "org.spongepowered"
+    shade
+    implementation.extendsFrom shade
+    shadow.extendsFrom shade
 }
 
 dependencies {
-    compile project(":orbis-lib")
-    shaded project(":orbis-lib")
+    minecraft("net.minecraftforge:forge:${project.minecraft_version}-${project.forge_version}")
+    shade(fg.deobf("com.gildedgames.orbis:orbis-lib:${project.orbis_version}"))
 }
-
-allprojects {
-    sourceCompatibility = 1.8
-    targetCompatibility = 1.8
-}
-
-if (System.getenv("BUILD_NUMBER") != null) {
-    version = "${minecraft_version}-${mod_version}+build${System.getenv("BUILD_NUMBER")}"
-} else {
-    version = "${minecraft_version}-${mod_version}-SNAPSHOT"
-}
-
-group = "com.gildedgames"
-archivesBaseName = "aether_ii"
 
 sourceSets {
-    api {
-        java { srcDir "src/api/java" }
-    }
     test {
         java { srcDir "src/test/java" }
     }
 }
 
-jar {
-    from sourceSets.api.output
-    from sourceSets.main.output
-
-    classifier "universal"
-
-    gradle.projectsEvaluated({
-        def artifacts = configurations.shaded.files
-                .findAll { it.name.contains("-universal.jar") }
-                .toList()
-                .reverse()
-
-        from(artifacts)
-
-        manifest {
-            attributes "ContainedDeps": artifacts.collect { it.name }.join(' ')
-            attributes "FMLAT": "aether_at.cfg"
-            attributes "SignedFileName": jar.archivePath.name
-        }
-    })
+shadowJar {
+    configurations = [project.configurations.shadow]
+    setArchiveClassifier('universal')
+    mergeServiceFiles()
 }
 
-task apiJar(type: Jar) {
-    classifier = "api"
-
-    from sourceSets.api.output
-}
-
-minecraft {
-    version = "$minecraft_version-$forge_version"
-    mappings = "$forge_mappings"
-
-    runDir = "run"
-
-    clientJvmArgs = serverJvmArgs
+reobf {
+    shadowJar {
+        dependsOn createMcpToSrg
+        mappings = createMcpToSrg.output
+    }
 }
 
 processResources {
+    duplicatesStrategy = DuplicatesStrategy.INCLUDE
     inputs.property "version", project.version
-    inputs.property "mcversion", project.minecraft.version
-
+    inputs.property "mcversion", minecraft_version
     from(sourceSets.main.resources.srcDirs) {
         include 'mcmod.info'
-
-        expand 'version': project.version, 'mcversion': project.minecraft.version
+        expand 'version': project.version, 'mcversion': minecraft_version
     }
-
     from(sourceSets.main.resources.srcDirs) {
         exclude 'mcmod.info'
     }
 }
 
-idea {
-    module {
-        inheritOutputDirs = true
+jar {
+    from sourceSets.main.output
+    setArchiveClassifier('universal')
+    manifest {
+        attributes([
+                'FMLAT': "${at_file}.cfg",
+                'SignedFileName': jar.archiveFile
+        ])
     }
 }
 
-// We disable this because Gradle will fail to build otherwise for some reason.
-// See https://github.com/MinecraftForge/Srg2Source/issues/10
-minecraft {
-    makeObfSourceJar = false
-}
-
-if (System.getenv("JARSIGN_SECRETS_FILE") != null) {
-    def secretsFile = file(System.getenv("JARSIGN_SECRETS_FILE"))
-
-    def secrets = new Properties()
-    secrets.load(secretsFile.newReader())
-
-    [jar, apiJar].each { jarTask ->
-        def task = task(jarTask.name + 'Sign', type: SignJar) {
-            keyStore = System.getenv("JARSIGN_KEYSTORE_FILE")
-            alias = secrets.alias
-            storePass = secrets.storePassword
-            keyPass = secrets.keyPassword
-
-            inputFile = jarTask.archivePath
-            outputFile = jarTask.archivePath
-        }
-
-        build.dependsOn task
+tasks.register('signJar', Jar) {
+    File secretsFile = Objects.nonNull(System.getenv("JARSIGN_SECRETS_FILE")) ?
+            file(System.getenv("JARSIGN_SECRETS_FILE")) : null
+    if(Objects.nonNull(secretsFile)) {
+        Properties secrets = new Properties()
+        secrets.load(secretsFile.newReader())
+        keyStore = System.getenv("JARSIGN_KEYSTORE_FILE")
+        alias = secrets.alias
+        storePass = secrets.storePassword
+        keyPass = secrets.keyPassword
     }
 }
 
-build.dependsOn apiJar
-
-jar.dependsOn ":orbis-lib:build"
+tasks.assemble.dependsOn('shadowJar')
+tasks.build.dependsOn('signJar')
+tasks.jar.finalizedBy('reobfJar')
+tasks.shadowJar.dependsOn('reobfJar')
+tasks.signJar.mustRunAfter('reobfShadowJar')
