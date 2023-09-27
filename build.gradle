@@ -6,10 +6,11 @@ plugins {
 
 fancyGradle {
     patches {
-        resources
-        coremods
         asm
+        codeChickenLib
+        coremods
         mergetool
+        resources
     }
 }
 
@@ -18,20 +19,6 @@ group = maven_group
 archivesBaseName = base_name
 
 java.toolchain.getLanguageVersion().set(JavaLanguageVersion.of(8))
-
-
-repositories {
-    maven {
-        name = 'CurseForge'
-        url = uri('https://www.cursemaven.com')
-        content {
-            includeGroup 'curse.maven'
-        }
-    }
-    flatDir {
-        dirs 'build/libs'
-    }
-}
 
 minecraft {
     mappings channel: 'stable', version: forge_mappings
@@ -50,6 +37,19 @@ minecraft {
     }
 }
 
+repositories {
+    maven {
+        name = 'CurseForge'
+        url = uri('https://www.cursemaven.com')
+        content {
+            includeGroup 'curse.maven'
+        }
+    }
+    flatDir {
+        dirs 'build/libs'
+    }
+}
+
 configurations {
     shade
     implementation.extendsFrom shade
@@ -59,6 +59,15 @@ configurations {
 dependencies {
     minecraft("net.minecraftforge:forge:${project.minecraft_version}-${project.forge_version}")
     shade(fg.deobf("com.gildedgames.orbis:orbis-lib:${project.orbis_version}"))
+
+    // Runtime only stuff for easier testing
+    runtimeOnly(fg.deobf("curse.maven:bookshelf-228525:${project.bookshelf_version}"))
+    runtimeOnly(fg.deobf("curse.maven:brandons-core-231382:${project.bc_version}"))
+    runtimeOnly(fg.deobf("curse.maven:caliper-266824:${project.caliper_version}"))
+    runtimeOnly(fg.deobf("curse.maven:codechicken-lib-242818:${project.ccl_version}"))
+    runtimeOnly(fg.deobf("curse.maven:had-enough-items-557549:${project.hei_version}"))
+    runtimeOnly(fg.deobf("curse.maven:redstone-flux-270789:${project.rf_version}"))
+    runtimeOnly(fg.deobf("curse.maven:the-one-probe-245211:${project.top_version}"))
 }
 
 sourceSets {
