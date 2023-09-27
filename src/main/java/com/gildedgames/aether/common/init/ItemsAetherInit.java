@@ -32,14 +32,13 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 
-@Mod.EventBusSubscriber
+@Mod.EventBusSubscriber(modid = AetherCore.MOD_ID)
 public class ItemsAetherInit
 {
 	private static final Collection<Item> registeredItems = new ArrayList<>();
 
 	@SubscribeEvent
-	public static void onRegisterItems(final RegistryEvent.Register<Item> event)
-	{
+	public static void onRegisterItems(final RegistryEvent.Register<Item> event) {
 		final ItemRegistryHelper r = new ItemRegistryHelper(event.getRegistry());
 
 		r.register("skyroot_door_item", new ItemBlockCustomDoor(BlocksAether.skyroot_door).setCreativeTab(CreativeTabsAether.TAB_CONSTRUCTION));

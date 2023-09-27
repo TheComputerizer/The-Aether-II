@@ -1,5 +1,6 @@
 package com.gildedgames.aether.common.events.listeners.player;
 
+import com.gildedgames.aether.common.AetherCore;
 import com.gildedgames.aether.common.init.DimensionsAether;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.world.World;
@@ -9,7 +10,7 @@ import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
-@Mod.EventBusSubscriber
+@Mod.EventBusSubscriber(modid = AetherCore.MOD_ID)
 public class PlayerWakeListener
 {
 	@SubscribeEvent

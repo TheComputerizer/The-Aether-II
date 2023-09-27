@@ -1,5 +1,6 @@
 package com.gildedgames.aether.common.events.listeners.world;
 
+import com.gildedgames.aether.common.AetherCore;
 import com.gildedgames.aether.common.blocks.IBlockRadiation;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
@@ -12,7 +13,7 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
 import java.util.Random;
 
-@Mod.EventBusSubscriber
+@Mod.EventBusSubscriber(modid = AetherCore.MOD_ID)
 public class WorldLoadListener
 {
     @SubscribeEvent

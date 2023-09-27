@@ -1,5 +1,6 @@
 package com.gildedgames.aether.common.events.listeners.player;
 
+import com.gildedgames.aether.common.AetherCore;
 import com.gildedgames.aether.common.capabilities.entity.player.PlayerAether;
 import com.gildedgames.aether.common.capabilities.entity.player.modules.PlayerCampfiresModule;
 import com.gildedgames.aether.common.capabilities.entity.player.modules.PlayerProgressModule;
@@ -17,7 +18,7 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.PlayerEvent;
 
-@Mod.EventBusSubscriber
+@Mod.EventBusSubscriber(modid = AetherCore.MOD_ID)
 public class PlayerRespawnListener
 {
 

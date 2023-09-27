@@ -5,6 +5,7 @@ import com.gildedgames.aether.api.entity.effects.IAetherStatusEffectPool;
 import com.gildedgames.aether.api.entity.effects.IAetherStatusEffects;
 import com.gildedgames.aether.api.registrar.CapabilitiesAether;
 import com.gildedgames.aether.api.registrar.ItemsAether;
+import com.gildedgames.aether.common.AetherCore;
 import com.gildedgames.aether.common.items.armor.ItemAetherShield;
 import com.gildedgames.aether.common.items.tools.ItemAetherShovel;
 import com.gildedgames.aether.common.items.weapons.crossbow.ItemCrossbow;
@@ -30,7 +31,7 @@ import net.minecraftforge.fml.common.gameevent.TickEvent;
 
 import java.util.UUID;
 
-@Mod.EventBusSubscriber
+@Mod.EventBusSubscriber(modid = AetherCore.MOD_ID)
 public class ItemAetherShieldListener
 {
 	@SubscribeEvent

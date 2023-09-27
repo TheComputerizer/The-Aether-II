@@ -29,7 +29,7 @@ import net.minecraftforge.fml.common.registry.ForgeRegistries;
 
 import java.util.List;
 
-@Mod.EventBusSubscriber
+@Mod.EventBusSubscriber(modid = AetherCore.MOD_ID)
 public class PlayerTeleportListener
 {
 

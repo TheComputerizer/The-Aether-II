@@ -50,14 +50,14 @@ import java.util.*;
 
 import static com.gildedgames.aether.common.init.CreativeTabsAether.*;
 
-@Mod.EventBusSubscriber
+@Mod.EventBusSubscriber(modid = AetherCore.MOD_ID)
 public class BlocksAetherInit
 {
 	private static final Collection<Block> registeredBlocks = new ArrayList<>();
 
 	@SubscribeEvent
-	public static void onRegisterBlocks(final RegistryEvent.Register<Block> event)
-	{
+	public static void onRegisterBlocks(final RegistryEvent.Register<Block> event) {
+		AetherCore.LOGGER.error("REGISTERING AETHER BLOCKS");
 		final BlockRegistryHelper r = new BlockRegistryHelper(event.getRegistry());
 
 		Block holystone = new BlockHolystone().setRadiationAmount(5).setRadiationDistance(8).setRadiationRate(40);

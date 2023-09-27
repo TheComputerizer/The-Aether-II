@@ -6,6 +6,7 @@ import com.gildedgames.aether.api.registrar.CapabilitiesAether;
 import com.gildedgames.aether.api.world.spawn.ISpawnHandler;
 import com.gildedgames.aether.api.world.spawn.ISpawnSystem;
 import com.gildedgames.aether.api.world.spawn.conditions.IConditionPosition;
+import com.gildedgames.aether.common.AetherCore;
 import com.gildedgames.aether.common.entities.animals.*;
 import com.gildedgames.aether.common.entities.monsters.*;
 import com.gildedgames.aether.common.init.DimensionsAether;
@@ -27,7 +28,7 @@ import net.minecraftforge.fml.common.gameevent.TickEvent.WorldTickEvent;
 import java.util.Collections;
 import java.util.List;
 
-@Mod.EventBusSubscriber
+@Mod.EventBusSubscriber(modid = AetherCore.MOD_ID)
 public class WorldTickListener
 {
 

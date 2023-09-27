@@ -7,6 +7,7 @@ import com.gildedgames.aether.api.player.IPlayerAether;
 import com.gildedgames.aether.api.world.islands.precipitation.IPrecipitationManager;
 import com.gildedgames.aether.api.world.preparation.IPrepManager;
 import com.gildedgames.aether.api.world.spawn.ISpawnSystem;
+import com.gildedgames.aether.common.AetherCore;
 import com.gildedgames.aether.common.capabilities.entity.effects.StatusEffectPool;
 import com.gildedgames.aether.common.capabilities.entity.player.PlayerAether;
 import com.gildedgames.aether.common.capabilities.entity.spawning.EntitySpawningInfo;
@@ -17,7 +18,6 @@ import com.gildedgames.aether.common.world.spawning.SpawnSystem;
 import net.minecraftforge.common.capabilities.CapabilityManager;
 import net.minecraftforge.fml.common.Mod;
 
-@Mod.EventBusSubscriber
 public class CapabilityManagerAether
 {
 	public static void init()

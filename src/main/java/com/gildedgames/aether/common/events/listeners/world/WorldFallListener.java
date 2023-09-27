@@ -1,5 +1,6 @@
 package com.gildedgames.aether.common.events.listeners.world;
 
+import com.gildedgames.aether.common.AetherCore;
 import com.gildedgames.aether.common.init.DimensionsAether;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
@@ -10,7 +11,7 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent;
 
-@Mod.EventBusSubscriber
+@Mod.EventBusSubscriber(modid = AetherCore.MOD_ID)
 public class WorldFallListener
 {
 	@SubscribeEvent

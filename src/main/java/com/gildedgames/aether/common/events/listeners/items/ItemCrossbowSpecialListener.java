@@ -1,5 +1,6 @@
 package com.gildedgames.aether.common.events.listeners.items;
 
+import com.gildedgames.aether.common.AetherCore;
 import com.gildedgames.aether.common.items.weapons.crossbow.ItemCrossbow;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.attributes.AttributeModifier;
@@ -11,7 +12,7 @@ import net.minecraftforge.fml.common.gameevent.TickEvent;
 
 import java.util.UUID;
 
-@Mod.EventBusSubscriber
+@Mod.EventBusSubscriber(modid = AetherCore.MOD_ID)
 public class ItemCrossbowSpecialListener
 {
     @SubscribeEvent

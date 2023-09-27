@@ -1,13 +1,14 @@
 package com.gildedgames.aether.common.world.preparation;
 
 import com.gildedgames.aether.api.world.preparation.IPrepManager;
+import com.gildedgames.aether.common.AetherCore;
 import net.minecraft.world.World;
 import net.minecraftforge.event.world.ChunkEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent;
 
-@Mod.EventBusSubscriber
+@Mod.EventBusSubscriber(modid = AetherCore.MOD_ID)
 public class PrepEventListener
 {
 	@SubscribeEvent

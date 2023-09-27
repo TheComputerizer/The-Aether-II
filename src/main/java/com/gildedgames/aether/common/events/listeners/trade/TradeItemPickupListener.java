@@ -1,11 +1,12 @@
 package com.gildedgames.aether.common.events.listeners.trade;
 
+import com.gildedgames.aether.common.AetherCore;
 import com.gildedgames.aether.common.containers.ContainerTrade;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.PlayerEvent;
 
-@Mod.EventBusSubscriber
+@Mod.EventBusSubscriber(modid = AetherCore.MOD_ID)
 public class TradeItemPickupListener
 {
 

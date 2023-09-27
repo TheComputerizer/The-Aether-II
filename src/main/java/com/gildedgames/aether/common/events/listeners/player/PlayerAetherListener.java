@@ -2,6 +2,7 @@ package com.gildedgames.aether.common.events.listeners.player;
 
 import com.gildedgames.aether.api.player.IPlayerAether;
 import com.gildedgames.aether.api.registrar.CapabilitiesAether;
+import com.gildedgames.aether.common.AetherCore;
 import com.gildedgames.aether.common.capabilities.entity.player.PlayerAether;
 import com.gildedgames.aether.common.capabilities.entity.player.modules.PlayerCampfiresModule;
 import com.gildedgames.aether.common.init.DimensionsAether;
@@ -19,7 +20,7 @@ import net.minecraftforge.fml.common.gameevent.PlayerEvent.PlayerChangedDimensio
 import net.minecraftforge.fml.common.gameevent.PlayerEvent.PlayerLoggedOutEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent;
 
-@Mod.EventBusSubscriber
+@Mod.EventBusSubscriber(modid = AetherCore.MOD_ID)
 public class PlayerAetherListener
 {
 	@SubscribeEvent

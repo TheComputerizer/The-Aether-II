@@ -21,7 +21,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 
-@Mod.EventBusSubscriber()
+@Mod.EventBusSubscriber(modid = AetherCore.MOD_ID)
 @GameRegistry.ObjectHolder(AetherCore.MOD_ID)
 public class BiomesAetherInit
 {

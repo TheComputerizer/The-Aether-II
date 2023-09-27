@@ -1,5 +1,6 @@
 package com.gildedgames.aether.common.events.listeners.items;
 
+import com.gildedgames.aether.common.AetherCore;
 import com.gildedgames.aether.common.capabilities.entity.player.PlayerAether;
 import com.gildedgames.aether.common.init.MaterialsAether;
 import com.gildedgames.aether.common.items.tools.handlers.*;
@@ -23,7 +24,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import java.util.HashMap;
 import java.util.Map;
 
-@Mod.EventBusSubscriber
+@Mod.EventBusSubscriber(modid = AetherCore.MOD_ID)
 public class ItemToolListener
 {
 	private static final Map<String, IToolEventHandler> handlers = new HashMap<>();
