@@ -2,7 +2,6 @@ package com.gildedgames.aether.common.init;
 
 import com.gildedgames.aether.api.registrar.BlocksAether;
 import com.gildedgames.aether.api.registrar.ItemsAether;
-import com.gildedgames.aether.client.renderer.tiles.items.TileEntityPresentItemRenderer;
 import com.gildedgames.aether.common.AetherCore;
 import com.gildedgames.aether.common.blocks.IBlockMultiName;
 import com.gildedgames.aether.common.blocks.IBlockWithItem;
@@ -57,7 +56,6 @@ public class BlocksAetherInit
 
 	@SubscribeEvent
 	public static void onRegisterBlocks(final RegistryEvent.Register<Block> event) {
-		AetherCore.LOGGER.error("REGISTERING AETHER BLOCKS");
 		final BlockRegistryHelper r = new BlockRegistryHelper(event.getRegistry());
 
 		Block holystone = new BlockHolystone().setRadiationAmount(5).setRadiationDistance(8).setRadiationRate(40);
