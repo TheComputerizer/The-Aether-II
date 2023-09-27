@@ -2,7 +2,6 @@ package com.gildedgames.aether.common;
 
 import com.gildedgames.aether.api.AetherAPI;
 import com.gildedgames.aether.common.analytics.GAReporter;
-import com.gildedgames.aether.common.util.JarValidator;
 import com.gildedgames.orbis.lib.CapabilityManagerOrbisLib;
 import net.minecraft.launchwrapper.Launch;
 import net.minecraft.util.ResourceLocation;
@@ -43,8 +42,6 @@ public class AetherCore
 
 	public static GAReporter ANALYTICS;
 
-	public static boolean IS_SIGNED = true;
-
 	public static ResourceLocation getResource(final String name)
 	{
 		return new ResourceLocation(AetherCore.MOD_ID, name);
@@ -77,17 +74,8 @@ public class AetherCore
 	}
 
 	@EventHandler
-	public void onModPreInit(final FMLPreInitializationEvent event)
-	{
+	public void onModPreInit(final FMLPreInitializationEvent event) {
 		AetherCore.CONFIG = new ConfigAether();
-
-		if (!AetherCore.isInsideDevEnvironment() && !JarValidator.validate(event.getSourceFile()))
-		{
-			AetherCore.LOGGER.warn("Failed to validate extended properties for the file located at " + event.getSourceFile());
-
-			AetherCore.IS_SIGNED = false;
-		}
-
 		AetherCore.PROXY.preInit(event);
 	}
 
@@ -113,21 +101,5 @@ public class AetherCore
 	public void onServerStarting(final FMLServerStartingEvent event)
 	{
 		AetherCore.PROXY.onServerStarting(event);
-	}
-
-	@EventHandler
-	public void onFingerprintViolation(final FMLFingerprintViolationEvent event)
-	{
-		if (AetherCore.isInsideDevEnvironment())
-		{
-			AetherCore.LOGGER.warn("Ignoring missing certificate for the Aether II because we are in a de-obfuscated workspace...");
-
-			return;
-		}
-
-		AetherCore.IS_SIGNED = false;
-
-		AetherCore.LOGGER.warn("No valid certificates could be found for the file located at: " + event.getSource());
-		AetherCore.LOGGER.warn("You have downloaded a release of the Aether II which does not contain a valid code signing certificate. This release will not receive support from Gilded Games.");
 	}
 }

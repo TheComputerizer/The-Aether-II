@@ -107,27 +107,11 @@ jar {
     setArchiveClassifier('universal')
     manifest {
         attributes([
-                'FMLAT': "${at_file}.cfg",
-                'SignedFileName': jar.archiveFile
+                'FMLAT': "${at_file}.cfg"
         ])
     }
 }
 
-tasks.register('signJar', Jar) {
-    File secretsFile = Objects.nonNull(System.getenv("JARSIGN_SECRETS_FILE")) ?
-            file(System.getenv("JARSIGN_SECRETS_FILE")) : null
-    if(Objects.nonNull(secretsFile)) {
-        Properties secrets = new Properties()
-        secrets.load(secretsFile.newReader())
-        keyStore = System.getenv("JARSIGN_KEYSTORE_FILE")
-        alias = secrets.alias
-        storePass = secrets.storePassword
-        keyPass = secrets.keyPassword
-    }
-}
-
 tasks.assemble.dependsOn('shadowJar')
-tasks.build.dependsOn('signJar')
 tasks.jar.finalizedBy('reobfJar')
 tasks.shadowJar.dependsOn('reobfJar')
-tasks.signJar.mustRunAfter('reobfShadowJar')
